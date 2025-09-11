@@ -1,0 +1,21 @@
+---
+import Base from "./Base.astro";
+const { frontmatter } = Astro.props;
+const { title, date, location, summary, seo = {}, images = [] } = frontmatter ?? {};
+---
+<Base title={seo.metaTitle || title} description={seo.metaDescription || summary}>
+  <article class="prose prose-slate max-w-none">
+    <h1>{title}</h1>
+    {date && <p class="text-sm text-slate-500">{new Date(date).toLocaleDateString('en-GB')} • {location}</p>}
+    {summary && <p class="lead">{summary}</p>}
+    <slot />
+    {images.length > 0 && (
+      <div class="grid md:grid-cols-3 gap-4 not-prose mt-8">
+        {images.map((src) => <img src={src} alt={title} class="rounded-xl w-full h-auto" loading="lazy" />)}
+      </div>
+    )}
+    <div class="not-prose mt-10">
+      <a href="/contact" class="btn">Want results like this? Book a call</a>
+    </div>
+  </article>
+</Base>

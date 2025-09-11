@@ -1,0 +1,24 @@
+---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/packages', label: 'Packages' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/industries/trades', label: 'Industries' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<header class="border-b bg-white/80 backdrop-blur sticky top-0 z-50">
+  <div class="container nav">
+    <a href="/" class="brand" aria-label="Web Dhiveloper — Home">
+      <picture>
+        <source srcset="/images/logo.webp" type="image/webp" />
+        <img src="/images/logo.png" alt="Web Dhiveloper — Your Web Partner" width="160" height="40" />
+      </picture>
+    </a>
+    <nav class="links">
+      {nav.map(n => <a class="no-underline text-slate-800 hover:text-slate-950" href={n.href}>{n.label}</a>)}
+      <a href="/contact" class="btn">Get a quote</a>
+    </nav>
+  </div>
+</header>
