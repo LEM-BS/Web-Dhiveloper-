@@ -1,16 +1,28 @@
 ---
 import Base from "../layouts/Base.astro";
-const posts = await Astro.glob('./case-studies/*.md');
+const posts = (await Astro.glob('./case-studies/*.md'))
+  .sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
 ---
 <Base title="Portfolio — Recent work | Web Dhiveloper" description="A few examples of fast launches and ongoing growth.">
-  <h1>Portfolio</h1>
-  <div class="grid md:grid-cols-2 gap-6 mt-6">
-    {posts.map(p => (
-      <a href={p.url} class="card no-underline">
-        <h3 class="mb-2">{p.frontmatter.title}</h3>
-        <p class="text-sm text-slate-600">{p.frontmatter.summary}</p>
-        <p class="mt-3 text-xs text-slate-500">{p.frontmatter.location} • {new Date(p.frontmatter.date).toLocaleDateString('en-GB')}</p>
+  <section class="space-y-4">
+    <h1>Recent work & ongoing growth</h1>
+    <p class="lead">Every project begins with a 10-day sprint and continues with monthly optimisation. Here are a few highlights that show how we help clients win more enquiries.</p>
+  </section>
+
+  <section class="mt-10 grid md:grid-cols-2 gap-6">
+    {posts.map((post) => (
+      <a href={post.url} class="card no-underline flex flex-col gap-3 hover:border-sky-300 transition-colors">
+        <span class="text-xs uppercase tracking-wide text-slate-500">{new Date(post.frontmatter.date).toLocaleDateString('en-GB')} • {post.frontmatter.location}</span>
+        <h2 class="text-xl font-semibold">{post.frontmatter.title}</h2>
+        <p class="text-sm text-slate-600 flex-1">{post.frontmatter.summary}</p>
+        <span class="text-sm font-medium text-sky-600">Read the full story →</span>
       </a>
     ))}
-  </div>
+  </section>
+
+  <section class="mt-20 card bg-slate-900 text-white">
+    <h2 class="text-2xl font-semibold">Want results like these?</h2>
+    <p class="mt-3 text-slate-200">Share your goals and we’ll walk you through the launch plan, monthly deliverables and investment.</p>
+    <a class="btn mt-6 inline-flex" href="/contact">Book a call</a>
+  </section>
 </Base>

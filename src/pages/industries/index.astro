@@ -1,0 +1,53 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const industries = [
+  {
+    href: "/industries/trades",
+    title: "Trades & construction",
+    summary: "Turn project proof and service menus into enquiries with conversion-focused site structures.",
+    highlights: ["Portfolio-driven pages", "Quote funnels", "Local SEO"],
+  },
+  {
+    href: "/industries/clinics",
+    title: "Clinics & healthcare",
+    summary: "Build trust, outline pathways and simplify bookings across multiple locations or practitioners.",
+    highlights: ["Treatment pathways", "Booking integrations", "Compliance ready"],
+  },
+  {
+    href: "/industries/professional-services",
+    title: "Professional services",
+    summary: "Showcase expertise, credentials and case studies for surveyors, architects, accountants and consultants.",
+    highlights: ["Thought leadership", "Fee transparency", "High-intent landing pages"],
+  },
+];
+---
+<Base title="Industries — Web Dhiveloper" description="Industry-specific website strategies for trades, clinics and professional services.">
+  <section class="space-y-4">
+    <h1>Industry playbooks</h1>
+    <p class="lead">We’ve refined our process for the types of businesses that rely on trust, proof and speed. Explore the recommendations that deliver enquiries in your world.</p>
+  </section>
+
+  <section class="mt-12 grid md:grid-cols-3 gap-6">
+    {industries.map((industry) => (
+      <a href={industry.href} class="card no-underline flex flex-col gap-4 hover:border-sky-300 transition-colors">
+        <div>
+          <h2 class="text-xl font-semibold">{industry.title}</h2>
+          <p class="mt-2 text-slate-600">{industry.summary}</p>
+        </div>
+        <ul class="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-sky-600 list-none pl-0">
+          {industry.highlights.map((highlight) => (
+            <li class="rounded-full bg-sky-50 px-3 py-1">{highlight}</li>
+          ))}
+        </ul>
+        <span class="text-sm font-medium text-sky-600">Read the playbook →</span>
+      </a>
+    ))}
+  </section>
+
+  <section class="mt-20 card bg-slate-900 text-white">
+    <h2 class="text-2xl font-semibold">Don’t see your sector?</h2>
+    <p class="mt-3 text-slate-200">If you sell high-consideration services, we can help. Tell us about your offer and we’ll share how our process adapts.</p>
+    <a class="btn mt-6 inline-flex" href="/contact">Start a conversation</a>
+  </section>
+</Base>

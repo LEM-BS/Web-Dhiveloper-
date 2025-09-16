@@ -1,0 +1,10 @@
+node_modules
+.dist
+.DS_Store
+.env
+.env.*
+dist
+.svelte-kit
+/.astro
+src/env.d.ts
+*.log

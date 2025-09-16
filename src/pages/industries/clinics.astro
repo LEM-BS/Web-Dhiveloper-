@@ -1,8 +1,64 @@
 ---
 import Base from "../../layouts/Base.astro";
+
+const essentials = [
+  "Clear treatment pathways with benefits, duration and fees",
+  "Practitioner bios that highlight qualifications and specialisms",
+  "Booking integrations with systems like Cliniko, Jane or TM3",
+  "Location pages with maps, parking and accessibility details",
+  "Content strategy for aftercare guides and SEO articles",
+];
+
+const highlights = [
+  {
+    title: "Stride Physio Group",
+    summary: "Unified three clinics into one streamlined site and increased bookings by 68% in a quarter.",
+    link: "/case-studies/stride-physio-group",
+  },
+  {
+    title: "Specialist practices",
+    summary: "Support for podiatry, chiropractic, aesthetics and dental teams that require compliance-ready content.",
+  },
+];
 ---
 <Base title="Websites for Clinics | Web Dhiveloper" description="Clean, accessible, compliant sites for clinics and private practices.">
-  <h1>Websites for Clinics</h1>
-  <p class="mt-4">For clinics and private practices we focus on clarity, accessibility, booking clarity and compliance — plus ongoing content updates to keep information current.</p>
-  <a href="/packages" class="btn mt-4">See packages</a>
+  <section class="space-y-4">
+    <h1>Websites for clinics & healthcare providers</h1>
+    <p class="lead">Give patients clarity and confidence before they ever get in touch. We design patient journeys that explain treatment options, surface credentials and make booking effortless.</p>
+  </section>
+
+  <section class="mt-10 grid lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
+    <div>
+      <h2>Everything your clinic needs to convert</h2>
+      <p class="mt-3 text-slate-600">From physiotherapy and private GP services to aesthetics and dental care, we make it easy for potential patients to choose you. No more outdated PDFs or complex booking instructions.</p>
+      <ul class="mt-4 space-y-3 list-disc pl-5 text-slate-600">
+        {essentials.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+      <p class="mt-4 text-sm text-slate-500">Accessibility, consent and privacy requirements are built into every engagement.</p>
+    </div>
+    <aside class="card space-y-4">
+      <h2>Featured work</h2>
+      <ul class="space-y-4 list-none pl-0">
+        {highlights.map((item) => (
+          <li>
+            <h3 class="font-semibold">{item.title}</h3>
+            <p class="text-sm text-slate-600 mt-1">{item.summary}</p>
+            {item.link && <a class="text-sm font-medium text-sky-600" href={item.link}>Read the case study →</a>}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </section>
+
+  <section class="mt-20 card bg-slate-900 text-white">
+    <h2 class="text-2xl font-semibold">How we keep your site compliant</h2>
+    <ul class="mt-4 space-y-2 list-disc pl-5 text-slate-200">
+      <li>Cookie consent and privacy policies aligned to UK GDPR</li>
+      <li>WCAG 2.2 AA accessibility best practices baked into design and development</li>
+      <li>Secure hosting, SSL and uptime monitoring with alerts</li>
+    </ul>
+    <a class="btn mt-6 inline-flex" href="/contact">Talk about your clinic</a>
+  </section>
 </Base>

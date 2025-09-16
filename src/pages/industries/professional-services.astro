@@ -1,8 +1,63 @@
 ---
 import Base from "../../layouts/Base.astro";
+
+const priorities = [
+  "Showcase credentials, memberships and regulatory compliance",
+  "Create service pages that explain deliverables, timelines and pricing cues",
+  "Turn case studies into compelling narratives with measurable results",
+  "Surface thought leadership through articles, resources and downloadable guides",
+  "Capture enquiries with smart routing forms and CRM automations",
+];
+
+const clients = [
+  {
+    title: "LEM Building Surveying",
+    summary: "10-day rebuild with ongoing SEO content increasing organic visibility by 84%.",
+    link: "/case-studies/lem-building-surveying",
+  },
+  {
+    title: "Boutique legal & financial consultancies",
+    summary: "Clear service positioning, partner bios and fee transparency to build trust fast.",
+  },
+];
 ---
 <Base title="Websites for Professional Services | Web Dhiveloper" description="Credible, fast sites for surveyors, architects, accountants and more.">
-  <h1>Websites for Professional Services</h1>
-  <p class="mt-4">We understand professional trust signals: qualifications, case studies, fees and response times. We make them obvious and keep them up to date.</p>
-  <a href="/packages" class="btn mt-4">See packages</a>
+  <section class="space-y-4">
+    <h1>Websites for professional services</h1>
+    <p class="lead">Whether you’re a surveying firm, architecture studio or consultancy, clients choose you based on expertise and trust. We make sure your website proves both.</p>
+  </section>
+
+  <section class="mt-10 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+    <div>
+      <h2>Make the complex simple</h2>
+      <p class="mt-3 text-slate-600">We craft clear service explanations, outline processes and show proof so prospects feel confident contacting you. No fluff — just the information decision-makers need.</p>
+      <ul class="mt-4 space-y-3 list-disc pl-5 text-slate-600">
+        {priorities.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+    <aside class="card space-y-4">
+      <h2>Who we work with</h2>
+      <ul class="space-y-4 list-none pl-0">
+        {clients.map((client) => (
+          <li>
+            <h3 class="font-semibold">{client.title}</h3>
+            <p class="text-sm text-slate-600 mt-1">{client.summary}</p>
+            {client.link && <a class="text-sm font-medium text-sky-600" href={client.link}>View the case study →</a>}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </section>
+
+  <section class="mt-20 card bg-slate-900 text-white">
+    <h2 class="text-2xl font-semibold">Deliverables you can expect</h2>
+    <ul class="mt-4 space-y-2 list-disc pl-5 text-slate-200">
+      <li>Service blueprints with scoping tools and gated content options</li>
+      <li>Resource hubs for guides, CPD materials and webinars</li>
+      <li>Analytics to attribute enquiries to the right channels</li>
+    </ul>
+    <a class="btn mt-6 inline-flex" href="/contact">Talk to the team</a>
+  </section>
 </Base>

@@ -1,25 +1,290 @@
 ---
 import Base from "../layouts/Base.astro";
+
+const highlights = [
+  {
+    title: "Launch in 10 working days",
+    copy: "A focused sprint that takes you from kickoff call to live site with no wasted time or surprise costs.",
+  },
+  {
+    title: "Monthly growth built in",
+    copy: "We plan, write and publish new project pages, service updates and conversion tweaks every month.",
+  },
+  {
+    title: "Fully managed for peace of mind",
+    copy: "Security, updates, backups and monitoring are handled for you. When something changes, just send an email.",
+  },
+];
+
+const process = [
+  {
+    title: "Kickoff & copy workshop",
+    copy: "We spend 90 minutes understanding your services, differentiation and success stories to build a messaging guide.",
+  },
+  {
+    title: "Design & build sprint",
+    copy: "Content, design and development run in parallel. Daily check-ins keep you in the loop without slowing momentum.",
+  },
+  {
+    title: "Launch, measure, improve",
+    copy: "Once live we watch analytics, collect enquiries, and ship monthly updates that keep the site converting.",
+  },
+];
+
+const metrics = [
+  { label: "Websites launched", value: "40+", description: "for SMEs, trades and professional services." },
+  { label: "Average turnaround", value: "10 days", description: "from kickoff to go-live on our Growth Care plan." },
+  { label: "Monthly updates", value: "2–5", description: "new pages shipped per client to fuel ongoing SEO." },
+];
+
+const packages = [
+  {
+    name: "Growth Care",
+    price: "£495/mo",
+    summary: "Perfect for SMEs who need a fast, credible site plus ongoing updates handled for them.",
+    link: "/packages#growth-care",
+  },
+  {
+    name: "Web Partner",
+    price: "£950/mo",
+    summary: "For ambitious teams who want a hands-on partner optimising and expanding every week.",
+    link: "/packages#web-partner",
+  },
+];
+
+const industries = [
+  {
+    href: "/industries/trades",
+    title: "Trades & construction",
+    copy: "Proof-driven pages for builders, roofers, electricians and contractors who need enquiries fast.",
+  },
+  {
+    href: "/industries/clinics",
+    title: "Clinics & healthcare",
+    copy: "Accessible, compliant sites that clearly explain treatments, availability and insurance details.",
+  },
+  {
+    href: "/industries/professional-services",
+    title: "Professional services",
+    copy: "Surveyors, architects and accountants who require credibility, clarity and ongoing content cadence.",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Every new job goes on the website. It keeps us busy and looks professional.",
+    name: "Director, roofing contractor",
+  },
+  {
+    quote: "Our phone enquiries doubled within the first quarter. The monthly reports make it easy to see why.",
+    name: "Clinic manager, private physiotherapy group",
+  },
+  {
+    quote: "They move faster than any agency we’ve worked with and still take care of the details.",
+    name: "Partner, building surveying firm",
+  },
+];
+
+const faqs = [
+  {
+    question: "What do you need from us to get started?",
+    answer:
+      "We just need a kickoff call, access to your existing brand assets (logo, colours, imagery) and details about your services. We handle copywriting, design, build and technical setup.",
+  },
+  {
+    question: "Can you migrate our current website?",
+    answer:
+      "Yes. We audit your existing content, map URLs, move across anything worth keeping and set up redirects so you maintain SEO equity.",
+  },
+  {
+    question: "How are monthly updates delivered?",
+    answer:
+      "You’ll receive a simple content calendar each month. We draft new pages, send them for approval, publish and report on performance with a clear next action.",
+  },
+  {
+    question: "Do you work with in-house marketing teams?",
+    answer:
+      "Absolutely. Many clients keep us on retainer to implement the roadmap, coordinate launches and give technical backup to their marketing lead.",
+  },
+];
+
+const caseStudies = (await Astro.glob('./case-studies/*.md'))
+  .sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
+  .slice(0, 3);
 ---
 <Base>
-  <section class="grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <h1>Websites that win you work.</h1>
-      <p class="mt-4 lead">We launch sites in 10 working days and grow them every month with fresh content, SEO tweaks, and ongoing care. No jargon. No hidden costs. Just results.</p>
-      <div class="mt-6 flex gap-3 flex-wrap">
-        <a class="btn" href="/packages">See packages</a>
-        <a class="btn btn-dark" href="/contact">Book a call</a>
+  <section class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-2 text-sm font-medium text-sky-700">
+        <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+        Websites that win you work
       </div>
-      <ul class="mt-8 grid sm:grid-cols-3 gap-4 text-sm">
-        <li class="card"><strong>Fast</strong><br/>Launch in 10 working days.</li>
-        <li class="card"><strong>Managed</strong><br/>Backups, security, updates.</li>
-        <li class="card"><strong>Growth-focused</strong><br/>New project pages & SEO reviews monthly.</li>
+      <h1>Build fast. Launch confidently. Grow every month.</h1>
+      <p class="lead">
+        We help trades, clinics and professional services stand out online with conversion-focused sites that stay fresh.
+        From first draft to monthly publishing we handle the lot, so you can focus on delivering great work.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a class="btn" href="/packages">See packages</a>
+        <a class="btn btn-dark" href="/contact">Book a strategy call</a>
+      </div>
+      <dl class="grid sm:grid-cols-3 gap-4">
+        {metrics.map((item) => (
+          <div class="card" role="presentation">
+            <dt class="text-sm uppercase tracking-wide text-slate-500">{item.label}</dt>
+            <dd class="mt-2 text-2xl font-semibold text-slate-900">{item.value}</dd>
+            <dd class="mt-1 text-sm text-slate-600 leading-relaxed">{item.description}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    <div class="card space-y-6">
+      <h2 class="text-xl font-semibold">What clients say</h2>
+      <ul class="space-y-5 list-none pl-0">
+        {testimonials.map((testimonial) => (
+          <li>
+            <p class="text-lg text-slate-700">“{testimonial.quote}”</p>
+            <p class="mt-2 text-sm text-slate-500">{testimonial.name}</p>
+          </li>
+        ))}
+      </ul>
+      <a href="/portfolio" class="btn w-full justify-center">See more results</a>
+    </div>
+  </section>
+
+  <section class="mt-24">
+    <h2>Built for owners who need momentum</h2>
+    <p class="lead mt-3 max-w-3xl">
+      Our retainers keep your website performing long after launch. Every deliverable is focused on enquiries, bookings and proof of work.
+    </p>
+    <div class="grid md:grid-cols-3 gap-6 mt-8">
+      {highlights.map((item) => (
+        <div class="card">
+          <h3>{item.title}</h3>
+          <p class="mt-3 text-slate-600">{item.copy}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-24 grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+    <div class="space-y-4">
+      <h2>How our 10-day launch works</h2>
+      <p class="text-slate-600">
+        A proven process that delivers fast results without sacrificing quality. You’ll always know what’s happening and what’s next.
+      </p>
+      <a href="/about" class="btn mt-4 inline-flex">More about our approach</a>
+    </div>
+    <ol class="grid gap-6">
+      {process.map((step, index) => (
+        <li class="card flex gap-4">
+          <span class="text-3xl font-bold text-sky-500">0{index + 1}</span>
+          <div>
+            <h3 class="text-xl font-semibold">{step.title}</h3>
+            <p class="mt-2 text-slate-600">{step.copy}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="mt-24">
+    <h2>Packages that scale with you</h2>
+    <p class="mt-3 text-slate-600 max-w-2xl">
+      Choose the level of partnership that fits your goals. Both plans include hosting, security, analytics and hands-on support.
+    </p>
+    <div class="grid md:grid-cols-2 gap-6 mt-8">
+      {packages.map((plan) => (
+        <div class="card flex flex-col gap-4">
+          <div class="flex items-baseline gap-3">
+            <h3 class="text-2xl font-semibold">{plan.name}</h3>
+            <span class="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">{plan.price}</span>
+          </div>
+          <p class="text-slate-600 flex-1">{plan.summary}</p>
+          <a href={plan.link} class="btn self-start">Explore the plan</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-24">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+      <div>
+        <h2>Specialist experience across key industries</h2>
+        <p class="mt-3 text-slate-600 max-w-3xl">
+          We translate technical work into simple language that wins trust. Explore tailored recommendations for your sector.
+        </p>
+      </div>
+      <a href="/industries" class="btn">See industry playbooks</a>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mt-8">
+      {industries.map((industry) => (
+        <a href={industry.href} class="card block no-underline hover:border-sky-300 transition-colors">
+          <h3>{industry.title}</h3>
+          <p class="mt-3 text-slate-600">{industry.copy}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {caseStudies.length > 0 && (
+    <section class="mt-24">
+      <h2>Recent launches & growth work</h2>
+      <p class="mt-3 text-slate-600 max-w-3xl">
+        Real examples of the projects we deliver — from 10-day rebuilds to long-term retainers that keep enquiries coming in.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
+        {caseStudies.map((post) => (
+          <a href={post.url} class="card no-underline flex flex-col gap-3">
+            <span class="text-xs uppercase tracking-wide text-slate-500">{new Date(post.frontmatter.date).toLocaleDateString('en-GB')} • {post.frontmatter.location}</span>
+            <h3 class="text-xl font-semibold">{post.frontmatter.title}</h3>
+            <p class="text-sm text-slate-600 flex-1">{post.frontmatter.summary}</p>
+            <span class="text-sm font-medium text-sky-600">View case study →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="mt-24 grid lg:grid-cols-2 gap-10 items-center">
+    <div class="card">
+      <h2>Why teams partner with Web Dhiveloper</h2>
+      <ul class="mt-4 space-y-3 text-slate-600 list-disc pl-5">
+        <li>Strategic copy and design that matches how clients actually buy.</li>
+        <li>Clear reporting with one recommended action you can take immediately.</li>
+        <li>Friendly support that handles changes, integrations and technical jobs.</li>
       </ul>
     </div>
     <div class="card">
-      <h3 class="mb-2">What clients say</h3>
-      <p>“Every new job goes on the website. It keeps us busy and looks professional.”</p>
-      <p class="text-sm text-slate-500 mt-2">Conservatory roofing firm</p>
+      <h2>Included in every engagement</h2>
+      <ul class="mt-4 space-y-3 text-slate-600 list-disc pl-5">
+        <li>Fast, secure hosting and privacy-first analytics setup.</li>
+        <li>Conversion tracking with forms, click events and call tracking on request.</li>
+        <li>Quarterly roadmap sessions to plan content and campaigns.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-24">
+    <h2>Questions? We’ve got answers.</h2>
+    <div class="mt-6 grid gap-4">
+      {faqs.map((item, index) => (
+        <details class="card" open={index === 0}>
+          <summary class="text-lg font-semibold cursor-pointer">{item.question}</summary>
+          <p class="mt-2 text-slate-600">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-24 card bg-slate-900 text-white text-center py-16">
+    <h2 class="text-3xl font-semibold">Ready to launch a site that pulls its weight?</h2>
+    <p class="mt-4 text-slate-200 max-w-2xl mx-auto">
+      Tell us about your goals and we’ll recommend the right package, timeline and early quick wins.
+    </p>
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <a class="btn" href="/contact">Book a call</a>
+      <a class="btn btn-dark bg-white text-slate-900 hover:bg-slate-100" href="/portfolio">Browse our work</a>
     </div>
   </section>
 </Base>
