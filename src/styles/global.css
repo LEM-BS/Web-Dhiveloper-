@@ -2,21 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {@apply font-sans bg-slate-50 text-slate-900;}
+  main {@apply container py-10;}
+  h1 {@apply text-3xl md:text-4xl font-bold;}
+  h2 {@apply text-2xl md:text-3xl font-semibold;}
+  h3 {@apply text-xl md:text-2xl font-semibold;}
+  strong {@apply font-semibold;}
+  details summary::-webkit-details-marker {display:none;}
+}
+
 a { @apply underline decoration-slate-300 hover:decoration-slate-600 underline-offset-4; }
+
 .btn { @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-medium shadow-sm bg-brand text-white hover:bg-sky-700 no-underline; }
 .btn-dark { @apply bg-slate-900 hover:bg-black text-white; }
 .card { @apply rounded-2xl border border-slate-200 shadow-sm p-6 bg-white; }
 .container { @apply max-w-6xl mx-auto px-4; }
-h1 { @apply text-3xl md:text-4xl font-bold; }
-h2 { @apply text-2xl md:text-3xl font-semibold; }
-h3 { @apply text-xl md:text-2xl font-semibold; }
 .lead { @apply text-lg text-slate-600; }
 
-.brand img { height: 28px; width: auto; display:block }
-@media (min-width: 768px){ .brand img{ height: 34px } }
-@media (min-width: 1120px){ .brand img{ height: 40px } }
+.brand img { height: 28px; width: auto; display:block; }
+@media (min-width: 768px){ .brand img{ height: 34px; } }
+@media (min-width: 1120px){ .brand img{ height: 40px; } }
 
-.nav { @apply flex items-center justify-between py-4; gap: 12px; flex-wrap: wrap; }
+.nav { @apply flex items-center justify-between py-4 gap-3 flex-wrap; }
 .nav .links { @apply hidden md:flex gap-6 items-center flex-wrap; }
 @media (max-width: 767px){ .nav .links { display:flex; gap:12px; } }
-.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+
+.prose { @apply text-slate-700 leading-relaxed; }
+.prose h2 { @apply text-2xl font-semibold mt-8; }
+.prose h3 { @apply text-xl font-semibold mt-6; }
+.prose p { @apply mt-4; }
+.prose ul, .prose ol { @apply mt-4 pl-6 space-y-2; }
+.prose li { @apply leading-relaxed; }
+.prose a { @apply text-sky-600 underline-offset-4 decoration-sky-200 hover:decoration-sky-500; }
+.prose img { @apply rounded-xl my-4; }
+.prose strong { @apply font-semibold text-slate-900; }
+
+summary { @apply text-lg font-semibold text-slate-800; }
+details[open] > summary { @apply mb-2; }
+details p { @apply text-sm md:text-base text-slate-600; }
+
+form input, form textarea, form select { @apply focus:outline-none focus:ring-2 focus:ring-sky-200; }

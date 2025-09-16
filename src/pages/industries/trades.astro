@@ -1,8 +1,70 @@
 ---
 import Base from "../../layouts/Base.astro";
+
+const deliverables = [
+  "Service pages structured for replacements, repairs and emergency callouts",
+  "Project libraries with before/after galleries and quote prompts",
+  "Location pages targeting the towns and postcodes you serve",
+  "Forms that route to the right team member with instant alerts",
+  "Monthly project write-ups and review requests to fuel SEO",
+];
+
+const proof = [
+  {
+    stat: "112%",
+    label: "increase in enquiries",
+    detail: "NorthWest Roofing Solutions after a 10-day relaunch."
+  },
+  {
+    stat: "18",
+    label: "new project pages",
+    detail: "published within the first three months to capture local search."
+  },
+  {
+    stat: "2 days",
+    label: "turnaround",
+    detail: "for content updates on our Growth Care plan."
+  },
+];
 ---
 <Base title="Websites for Trades | Web Dhiveloper" description="Fast, managed websites for builders, roofers, electricians and more.">
-  <h1>Websites for Trades</h1>
-  <p class="mt-4">We build and manage websites for builders, roofers, electricians, plumbers and other local trades. Launch in 10 days, then add new project pages every month for SEO and proof.</p>
-  <a href="/packages" class="btn mt-4">See packages</a>
+  <section class="space-y-4">
+    <h1>Websites for trades & construction</h1>
+    <p class="lead">Turn proof of your workmanship into enquiries. We translate site visits, certifications and happy customers into a digital presence that keeps the phone ringing.</p>
+  </section>
+
+  <section class="mt-10 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+    <div>
+      <h2>What we deliver</h2>
+      <p class="mt-3 text-slate-600">Our 10-day build pulls together your best projects, team experience and service detail. After launch we publish fresh proof-of-work every month so search engines — and customers — know you’re active.</p>
+      <ul class="mt-4 space-y-3 list-disc pl-5 text-slate-600">
+        {deliverables.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+      <a class="btn mt-6 inline-flex" href="/case-studies/northwest-roofing-solutions">See a roofing case study</a>
+    </div>
+    <aside class="card space-y-4">
+      <h2>Results we’ve delivered</h2>
+      <ul class="space-y-3 list-none pl-0">
+        {proof.map((item) => (
+          <li>
+            <div class="text-3xl font-semibold text-sky-600">{item.stat}</div>
+            <div class="text-sm uppercase tracking-wide text-slate-500">{item.label}</div>
+            <p class="text-sm text-slate-600 mt-1">{item.detail}</p>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </section>
+
+  <section class="mt-20 card bg-slate-900 text-white">
+    <h2 class="text-2xl font-semibold">Perfect for</h2>
+    <ul class="mt-4 space-y-2 list-disc pl-5 text-slate-200">
+      <li>Roofers, builders, electricians, plumbers and HVAC contractors</li>
+      <li>Specialist trades such as damp proofing, glazing and conservation work</li>
+      <li>Firms expanding into new towns or launching a maintenance division</li>
+    </ul>
+    <a class="btn mt-6 inline-flex" href="/contact">Book a project planning call</a>
+  </section>
 </Base>

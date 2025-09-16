@@ -1,18 +1,107 @@
 ---
 import Base from "../layouts/Base.astro";
+
+const quickInfo = [
+  { label: "Office hours", value: "Monday–Friday, 9am–5pm (UK)" },
+  { label: "Response time", value: "We’ll reply within one working day." },
+  { label: "Phone", value: "+44 151 123 4567" },
+  { label: "Email", value: "hello@webdhiveloper.co.uk" },
+];
 ---
 <Base title="Contact — Get a quote" description="Tell us about your business and we’ll recommend the right package.">
-  <h1>Get a quote</h1>
-  <p class="mb-6">Tell us what you do, where you operate, and what you need from your website.</p>
-  <form name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field" class="card grid gap-4 max-w-xl">
-    <input type="hidden" name="form-name" value="contact" />
-    <p class="hidden">
-      <label>Don’t fill this in: <input name="bot-field" /></label>
-    </p>
-    <label class="grid gap-1">Name<input class="border rounded-xl px-3 py-2" name="name" required></label>
-    <label class="grid gap-1">Email<input class="border rounded-xl px-3 py-2" type="email" name="email" required></label>
-    <label class="grid gap-1">Business<input class="border rounded-xl px-3 py-2" name="business"></label>
-    <label class="grid gap-1">What do you need?<textarea class="border rounded-xl px-3 py-2" name="message" rows="5" required></textarea></label>
-    <button type="submit" class="btn">Send</button>
-  </form>
+  <section class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] gap-10 items-start">
+    <div>
+      <h1>Let’s plan your next website win</h1>
+      <p class="lead mt-3">Tell us what you do, where you operate and the outcomes you want. We’ll come back with the best-fit package, timeline and first-month roadmap.</p>
+
+      <form
+        name="contact"
+        method="POST"
+        action="/success"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="card grid gap-4 mt-8"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label>Don’t fill this in: <input name="bot-field" /></label>
+        </p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <label class="grid gap-1 text-sm font-medium text-slate-700">
+            Name
+            <input class="border rounded-xl px-3 py-2" name="name" autocomplete="name" required />
+          </label>
+          <label class="grid gap-1 text-sm font-medium text-slate-700">
+            Email
+            <input class="border rounded-xl px-3 py-2" type="email" name="email" autocomplete="email" required />
+          </label>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <label class="grid gap-1 text-sm font-medium text-slate-700">
+            Business name
+            <input class="border rounded-xl px-3 py-2" name="business" autocomplete="organization" />
+          </label>
+          <label class="grid gap-1 text-sm font-medium text-slate-700">
+            Website (if you have one)
+            <input class="border rounded-xl px-3 py-2" type="url" name="website" placeholder="https://" />
+          </label>
+        </div>
+        <label class="grid gap-1 text-sm font-medium text-slate-700">
+          What services do you offer?
+          <input class="border rounded-xl px-3 py-2" name="services" placeholder="e.g. roofing, physiotherapy, surveying" />
+        </label>
+        <div class="grid md:grid-cols-2 gap-4">
+          <label class="grid gap-1 text-sm font-medium text-slate-700">
+            Desired start date
+            <input class="border rounded-xl px-3 py-2" name="start-date" type="text" placeholder="e.g. ASAP, within 4 weeks" />
+          </label>
+          <label class="grid gap-1 text-sm font-medium text-slate-700">
+            Typical monthly marketing budget
+            <select class="border rounded-xl px-3 py-2" name="budget">
+              <option value="" selected>Choose an option</option>
+              <option value="under-1k">Under £1k</option>
+              <option value="1-2k">£1k–£2k</option>
+              <option value="2-5k">£2k–£5k</option>
+              <option value="5k-plus">£5k+</option>
+            </select>
+          </label>
+        </div>
+        <label class="grid gap-1 text-sm font-medium text-slate-700">
+          What do you need help with?
+          <textarea class="border rounded-xl px-3 py-2" name="message" rows="6" required placeholder="Tell us about your goals, challenges and any deadlines."></textarea>
+        </label>
+        <label class="grid gap-1 text-sm font-medium text-slate-700">
+          How did you hear about us?
+          <input class="border rounded-xl px-3 py-2" name="referral" placeholder="Referral, search, LinkedIn, etc." />
+        </label>
+        <label class="flex items-center gap-2 text-sm text-slate-600">
+          <input type="checkbox" name="newsletter" value="yes" class="rounded border-slate-300" />
+          I’d like to receive occasional insights on winning more web enquiries.
+        </label>
+        <button type="submit" class="btn w-full justify-center">Submit enquiry</button>
+      </form>
+    </div>
+
+    <aside class="card space-y-5">
+      <h2 class="text-xl font-semibold">What happens next</h2>
+      <ol class="space-y-3 list-decimal pl-5 text-slate-600">
+        <li>We’ll review your message and follow up with any clarifying questions.</li>
+        <li>You’ll receive a suggested package, investment and a draft project timeline.</li>
+        <li>When you’re ready, we schedule the kickoff workshop and share prep materials.</li>
+      </ol>
+      <div class="border-t pt-4">
+        <h3 class="font-semibold text-slate-700">Prefer to talk?</h3>
+        <p class="text-sm text-slate-600">Book a 20-minute discovery call and we’ll walk through your goals live.</p>
+        <a class="btn mt-3" href="mailto:hello@webdhiveloper.co.uk">Email us directly</a>
+      </div>
+      <dl class="grid gap-3 text-sm text-slate-600">
+        {quickInfo.map((item) => (
+          <div>
+            <dt class="font-medium text-slate-500 uppercase tracking-wide">{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </aside>
+  </section>
 </Base>

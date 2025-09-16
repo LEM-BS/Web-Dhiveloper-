@@ -1,8 +1,141 @@
 ---
 import Base from "../layouts/Base.astro";
+
+const values = [
+  {
+    title: "Honest scope",
+    copy: "Fixed packages with clear deliverables. No hidden costs, no upsells — just proactive ideas when they’ll move the needle.",
+  },
+  {
+    title: "Momentum mindset",
+    copy: "We ship in days, not months. Small weekly wins compound into major growth over the year.",
+  },
+  {
+    title: "Partnership, not tickets",
+    copy: "You get the thinking and the doing: strategy, copy, design, build and measurement under one roof.",
+  },
+];
+
+const timeline = [
+  {
+    year: "Day 0",
+    title: "Discovery & alignment",
+    copy: "Kickoff workshop, access gathering and project plan with dates so everyone knows what’s happening when.",
+  },
+  {
+    year: "Days 1–7",
+    title: "Content, design & build",
+    copy: "Messaging, page structure and visual system come together in a rapid sprint. You’ll review in-browser, not static PDFs.",
+  },
+  {
+    year: "Day 10",
+    title: "Launch & handover",
+    copy: "Go-live checklist, tracking setup and training videos so your team knows how everything works.",
+  },
+  {
+    year: "Month 1 onwards",
+    title: "Growth cadence",
+    copy: "Monthly roadmap session, two new pages minimum and regular optimisation tasks driven by analytics insights.",
+  },
+];
+
+const toolkit = [
+  "Astro + Tailwind for fast, accessible front-ends",
+  "Headless CMS or Markdown workflows depending on your team",
+  "Privacy-first analytics (Plausible/GA4) with dashboards",
+  "Automation using Zapier, Make or native CRM integrations",
+  "Hosting on Netlify with CI/CD and uptime monitoring",
+];
 ---
-<Base title="About — Web Dhiveloper" description="We build fast sites in 10 days and keep them growing every month.">
-  <h1>About us</h1>
-  <p class="mt-4">We’re a lean team focused on one thing: shipping fast websites that generate enquiries — then improving them every month with fresh content and small, smart optimisations.</p>
-  <p>We specialise in SMEs and trades. Clear scope, fixed prices, tight timelines.</p>
+<Base title="About — Web Dhiveloper" description="Meet the delivery team behind Web Dhiveloper and see how we ship fast sites that keep growing.">
+  <section class="space-y-4">
+    <h1>We build web experiences that make service businesses feel effortless.</h1>
+    <p class="lead">Web Dhiveloper is a lean team of strategists, designers and developers who love turning messy offers into clear customer journeys.</p>
+    <p class="text-slate-600 max-w-3xl">
+      We partner with founders, directors and marketing leads who want momentum. The outcome is always the same: a site that feels custom, loads fast and keeps improving month after month.
+    </p>
+  </section>
+
+  <section class="mt-16 grid md:grid-cols-3 gap-6">
+    {values.map((value) => (
+      <div class="card h-full">
+        <h2 class="text-xl font-semibold">{value.title}</h2>
+        <p class="mt-3 text-slate-600">{value.copy}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="mt-24 grid lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
+    <div>
+      <h2>Small team, senior talent</h2>
+      <p class="mt-3 text-slate-600">
+        We only take on a handful of builds each quarter so you always work with the core team: strategy, UX, development and content specialists who have shipped for agencies, consultancies and growing local businesses.
+      </p>
+      <div class="mt-6 grid gap-4">
+        <div class="card">
+          <h3 class="font-semibold">Ellie Dhiveloper — Strategy & UX</h3>
+          <p class="text-slate-600 text-sm mt-1">Leads discovery, messaging and customer research to make sure every page speaks your customers’ language.</p>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold">Sam Carter — Technical Lead</h3>
+          <p class="text-slate-600 text-sm mt-1">Builds performant, accessible front-ends and integrations so everything runs smoothly post-launch.</p>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold">Priya Patel — Content & Optimisation</h3>
+          <p class="text-slate-600 text-sm mt-1">Owns ongoing content production, SEO tweaks and analytics reporting to keep growth on track.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card space-y-4">
+      <h2>How we collaborate</h2>
+      <ul class="space-y-3 list-disc pl-5 text-slate-600">
+        <li>Weekly async updates with clear next steps and owners.</li>
+        <li>Shared project hub (Notion or ClickUp) so you can see progress at a glance.</li>
+        <li>Video walkthroughs for major deliverables — no guessing what’s changed.</li>
+        <li>Direct Slack channel for urgent questions or quick approvals.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-24">
+    <h2>The journey from idea to results</h2>
+    <p class="mt-3 text-slate-600 max-w-3xl">Our battle-tested playbook keeps everyone aligned, whether you’re refreshing a five-page brochure site or rebuilding a 20-page lead-generation machine.</p>
+    <ol class="mt-6 grid gap-6">
+      {timeline.map((item) => (
+        <li class="card">
+          <div class="flex items-baseline justify-between gap-4">
+            <span class="text-sm font-medium uppercase tracking-wide text-slate-500">{item.year}</span>
+            <h3 class="text-xl font-semibold">{item.title}</h3>
+          </div>
+          <p class="mt-3 text-slate-600">{item.copy}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="mt-24 grid lg:grid-cols-2 gap-10">
+    <div class="card">
+      <h2>Tooling that keeps things future-proof</h2>
+      <ul class="mt-4 space-y-3 list-disc pl-5 text-slate-600">
+        {toolkit.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Credentials & guardrails</h2>
+      <ul class="mt-4 space-y-3 text-slate-600 list-disc pl-5">
+        <li>Certified in Google Analytics 4, HubSpot CMS and Netlify Enterprise.</li>
+        <li>ICO registered with GDPR-ready privacy policies and cookie controls.</li>
+        <li>Accessibility reviews baked into every build (WCAG 2.2 AA aligned).</li>
+        <li>Disaster recovery playbooks with 30-day backups and uptime monitoring.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-24 card bg-sky-50 border-sky-200 text-slate-900">
+    <h2 class="text-2xl font-semibold">Let’s build something that works hard for you</h2>
+    <p class="mt-3 text-slate-700">Share your goals, audience and timeline — we’ll come prepared with a tailored plan, budget and first-month roadmap.</p>
+    <a class="btn mt-6 inline-flex" href="/contact">Start the conversation</a>
+  </section>
 </Base>

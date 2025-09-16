@@ -2,7 +2,17 @@
 import Base from "../layouts/Base.astro";
 ---
 <Base title="Thanks — Web Dhiveloper">
-  <h1>Thanks — we’ve got your message.</h1>
-  <p class="lead">We’ll reply within one working day. If it’s urgent, please call us.</p>
-  <p class="mt-6"><a class="btn" href="/">Back to Home</a></p>
+  <section class="card max-w-2xl mx-auto text-center space-y-4">
+    <h1>Thanks — we’ve got your message.</h1>
+    <p class="lead">We’ll reply within one working day. If it’s urgent, please call us on +44 151 123 4567.</p>
+    <div class="text-sm text-slate-600 space-y-2">
+      <p><strong>What happens next?</strong></p>
+      <ol class="list-decimal list-inside space-y-1 text-left">
+        <li>We’ll review your message and confirm a time for a quick call.</li>
+        <li>You’ll receive a tailored proposal with pricing and timeline options.</li>
+        <li>Once you’re ready we book the kickoff workshop and share prep materials.</li>
+      </ol>
+    </div>
+    <a class="btn" href="/">Back to home</a>
+  </section>
 </Base>
