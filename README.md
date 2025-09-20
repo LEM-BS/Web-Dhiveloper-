@@ -34,3 +34,4 @@ A fast static website for your agency: **Astro + Tailwind**, **Markdown case stu
 - Update email and phone in `src/components/Footer.astro`.
 - Replace `site` in `astro.config.mjs` with your domain.
 - Update meta titles/descriptions as you like on each page.
+- Update `public/llms.txt` with the audit-approved LLM policy or allow-list before launch.

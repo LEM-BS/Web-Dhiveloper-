@@ -11,3 +11,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://yourdomain.co.uk/sitemap-index.xml
+# LLM manifest: https://yourdomain.co.uk/llms.txt
