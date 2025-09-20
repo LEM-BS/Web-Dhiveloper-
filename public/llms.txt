@@ -1,0 +1,7 @@
+# llms.txt placeholder
+# Replace this file with the official LLM policy or allow-list provided by the security audit team.
+# Until then, this placeholder clarifies that automated LLM agents should contact the team before crawling restricted content.
+
+Contact: security@example.com
+Status: Placeholder pending audit-approved content
+Last-Updated: 2024-01-01
