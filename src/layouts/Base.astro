@@ -6,8 +6,10 @@ const {
   title = "Web Dhiveloper — Websites that win you work",
   description = "10-day launches with monthly growth: new pages, SEO tweaks, and website care for SMEs & trades.",
   metaImage = "/images/logo.webp",
-  url = "https://yourdomain.co.uk/",
+  url: canonicalOverride,
 } = Astro.props;
+
+const canonicalUrl = canonicalOverride ?? Astro.url.href;
 ---
 <html lang="en-GB">
   <head>
@@ -19,8 +21,14 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={metaImage} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={url} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={metaImage} />
+    <meta name="twitter:url" content={canonicalUrl} />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalUrl} />
   </head>
   <body class="bg-slate-50 text-slate-900">
     <Header />
