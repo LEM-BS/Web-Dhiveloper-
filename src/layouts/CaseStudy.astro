@@ -2,16 +2,68 @@
 import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
 const { title, date, location, summary, seo = {}, images = [] } = frontmatter ?? {};
+
+const site = Astro.site ?? new URL('https://webdhiveloper.co.uk');
+const canonicalUrl = Astro.url.href;
+
+const galleryImages = images.map((image, index) =>
+  typeof image === 'string'
+    ? { src: image, alt: `${title} case study image ${index + 1}` }
+    : { src: image?.src, alt: image?.alt || `${title} case study image ${index + 1}` },
+);
+
+const imageUrls = galleryImages
+  .filter((image) => Boolean(image?.src))
+  .map((image) => new URL(image.src, site).toString());
+
+const caseStudySchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CaseStudy",
+    name: title,
+    headline: summary || title,
+    description: summary,
+    url: canonicalUrl,
+    datePublished: date,
+    image: imageUrls.length ? imageUrls : undefined,
+    author: {
+      "@type": "Organization",
+      name: "Web Dhiveloper",
+      url: site.toString().replace(/\/$/, ''),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Web Dhiveloper",
+      logo: {
+        "@type": "ImageObject",
+        url: new URL('/images/logo.webp', site).toString(),
+      },
+    },
+  },
+];
 ---
-<Base title={seo.metaTitle || title} description={seo.metaDescription || summary}>
+<Base
+  title={seo.metaTitle || title}
+  description={seo.metaDescription || summary}
+  structuredData={caseStudySchema}
+>
   <article class="prose prose-slate max-w-none">
     <h1>{title}</h1>
     {date && <p class="text-sm text-slate-500">{new Date(date).toLocaleDateString('en-GB')} • {location}</p>}
     {summary && <p class="lead">{summary}</p>}
     <slot />
-    {images.length > 0 && (
+    {galleryImages.filter((image) => Boolean(image?.src)).length > 0 && (
       <div class="grid md:grid-cols-3 gap-4 not-prose mt-8">
-        {images.map((src) => <img src={src} alt={title} class="rounded-xl w-full h-auto" loading="lazy" />)}
+        {galleryImages
+          .filter((image) => Boolean(image?.src))
+          .map((image) => (
+          <img
+            src={image.src}
+            alt={image.alt}
+            class="rounded-xl w-full h-auto"
+            loading="lazy"
+          />
+        ))}
       </div>
     )}
     <div class="not-prose mt-10">

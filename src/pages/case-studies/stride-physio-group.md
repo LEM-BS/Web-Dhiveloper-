@@ -8,7 +8,8 @@ seo:
   metaTitle: "Stride Physio Group Case Study — Clinic Website & Booking Growth"
   metaDescription: "Discover how Web Dhiveloper rebuilt Stride Physio Group’s website, improved conversion copy and increased bookings by 68%."
 images:
-  - "/images/sample-1.jpg"
+  - src: "/images/sample-1.jpg"
+    alt: "Screenshot of the Stride Physio Group website highlighting online booking pathways"
 ---
 
 ## About the client

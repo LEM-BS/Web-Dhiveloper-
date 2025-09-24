@@ -7,9 +7,38 @@ const {
   description = "10-day launches with monthly growth: new pages, SEO tweaks, and website care for SMEs & trades.",
   metaImage = "/images/logo.webp",
   url: canonicalOverride,
+  structuredData = [],
 } = Astro.props;
 
+const site = Astro.site ?? new URL('https://webdhiveloper.co.uk');
 const canonicalUrl = canonicalOverride ?? Astro.url.href;
+const absoluteMetaImage = metaImage.startsWith('http') ? metaImage : new URL(metaImage, site).toString();
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Web Dhiveloper",
+  url: site.toString().replace(/\/$/, ''),
+  logo: new URL('/images/logo.webp', site).toString(),
+  email: "hello@webdhiveloper.co.uk",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: "hello@webdhiveloper.co.uk",
+      availableLanguage: ["English"],
+      areaServed: "GB",
+    },
+  ],
+};
+
+const structuredDataArray = Array.isArray(structuredData)
+  ? structuredData.filter(Boolean)
+  : structuredData
+    ? [structuredData]
+    : [];
+
+const structuredDataEntries = [organizationSchema, ...structuredDataArray];
 ---
 <html lang="en-GB">
   <head>
@@ -19,16 +48,20 @@ const canonicalUrl = canonicalOverride ?? Astro.url.href;
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={metaImage} />
+    <meta property="og:image" content={absoluteMetaImage} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={metaImage} />
+    <meta name="twitter:image" content={absoluteMetaImage} />
     <meta name="twitter:url" content={canonicalUrl} />
     <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href={canonicalUrl} />
+    <slot name="head" />
+    {structuredDataEntries.map((data) => (
+      <script type="application/ld+json">{JSON.stringify(data)}</script>
+    ))}
   </head>
   <body class="bg-slate-50 text-slate-900">
     <Header />

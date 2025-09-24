@@ -3,6 +3,6 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://yourdomain.co.uk',
+  site: 'https://webdhiveloper.co.uk',
   integrations: [ tailwind({ applyBaseStyles: true }), sitemap() ],
 });

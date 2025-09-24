@@ -8,8 +8,10 @@ seo:
   metaTitle: "NorthWest Roofing Solutions Case Study — Roofing Website & Lead Gen"
   metaDescription: "See how Web Dhiveloper rebuilt NorthWest Roofing Solutions in 10 days and delivered a 112% uplift in web enquiries."
 images:
-  - "/images/sample-1.jpg"
-  - "/images/sample-2.jpg"
+  - src: "/images/sample-1.jpg"
+    alt: "Homepage mockup for NorthWest Roofing Solutions showcasing roofing services and testimonials"
+  - src: "/images/sample-2.jpg"
+    alt: "Before and after roofing project photography for NorthWest Roofing Solutions"
 ---
 
 ## About the client

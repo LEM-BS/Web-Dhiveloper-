@@ -8,8 +8,10 @@ seo:
   metaTitle: "LEM Building Surveying Website — Independent RICS Surveyor (Case Study)"
   metaDescription: "10-day rebuild + ongoing content and SEO for LEM Building Surveying, serving Deeside, Chester & the North West."
 images:
-  - "/images/sample-1.jpg"
-  - "/images/sample-2.jpg"
+  - src: "/images/sample-1.jpg"
+    alt: "Mockup of the LEM Building Surveying website homepage highlighting core services"
+  - src: "/images/sample-2.jpg"
+    alt: "Collage of property survey project photography for LEM Building Surveying"
 ---
 
 ## About the client

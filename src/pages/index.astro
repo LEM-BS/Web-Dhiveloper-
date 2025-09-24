@@ -1,6 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
 
+const site = Astro.site ?? new URL('https://webdhiveloper.co.uk');
+const pageTitle = "Web Dhiveloper — Fast websites for trades, clinics & professional services";
+const pageDescription =
+  "Launch fast Astro websites with ongoing SEO, content and care plans tailored for UK trades, clinics and professional services.";
+
 const highlights = [
   {
     title: "Launch in 10 working days",
@@ -111,8 +116,38 @@ const faqs = [
 const caseStudies = (await Astro.glob('./case-studies/*.md'))
   .sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
   .slice(0, 3);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: pageTitle,
+  url: Astro.url.href,
+  description: pageDescription,
+  inLanguage: "en-GB",
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Web Dhiveloper",
+    url: site.toString().replace(/\/$/, ''),
+  },
+  primaryImageOfPage: new URL('/images/logo.webp', site).toString(),
+};
+
+const structuredData = [webPageSchema, faqSchema];
 ---
-<Base>
+<Base title={pageTitle} description={pageDescription} structuredData={structuredData}>
   <section class="grid lg:grid-cols-2 gap-12 items-center">
     <div class="space-y-6">
       <div class="inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-2 text-sm font-medium text-sky-700">
